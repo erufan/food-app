@@ -1,14 +1,20 @@
 import Link from "next/link";
+import Image from "next/image";
+
 import logo from "@/assets/logo.png";
+import style from "./main-header.module.css";
+import MainHeaderBackGround from "./main-header-background"
 
 const MainHeader = () => {
   return (
-    <header>
-      <Link href="/">
-        <img src={logo.src} alt="a table with food on it" />
+    <>
+      <MainHeaderBackGround/>
+    <header className={style.header}>
+      <Link className={style.logo} href="/">
+        <Image src={logo} alt="a table with food on it" priority/>
         next Food
       </Link>
-      <nav>
+      <nav className={style.nav}>
         <ul>
           <li>
             <Link href="/meals">see meals</Link>
@@ -18,7 +24,8 @@ const MainHeader = () => {
           </li>
         </ul>
       </nav>
-    </header>
+      </header>
+    </>
   );
 };
 
