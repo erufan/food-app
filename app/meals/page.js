@@ -1,8 +1,11 @@
 import Link from "next/link";
 import classes from "./page.module.css";
-import MealItem from "@/components/meals/meal-item";
+import MealsGrid from "@/components/meals/meals-grid";
 
-const MealsPage = () => {
+const MealsPage = async () => {
+  const data = await fetch("http://localhost:3000/api/meals");
+  const meals = await data.json();
+
   return (
     <>
       <header className={classes.header}>
@@ -16,7 +19,7 @@ const MealsPage = () => {
         </p>
       </header>
       <main className={classes.main}>
-        <MealItem meals={[]} />
+        <MealsGrid meals={meals} />
       </main>
     </>
   );
