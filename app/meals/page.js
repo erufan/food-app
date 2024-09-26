@@ -3,6 +3,9 @@ import classes from "./page.module.css";
 import MealsGrid from "@/components/meals/meals-grid";
 
 const MealsPage = async () => {
+  const data = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/meals`);
+  const meals = await data.json();
+
   return (
     <>
       <header className={classes.header}>
@@ -16,7 +19,7 @@ const MealsPage = async () => {
         </p>
       </header>
       <main className={classes.main}>
-        <MealsGrid meals={[]} />
+        <MealsGrid meals={meals} />
       </main>
     </>
   );
