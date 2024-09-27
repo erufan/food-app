@@ -1,12 +1,10 @@
 import Image from "next/image";
+import { getMeal } from "@/services/meals";
 
 import classes from "./page.module.css";
 
 const MealDetailsPage = async ({ params }) => {
-  const data = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/meals/${params.meal}`
-  );
-  const meal = await data.json();
+  const meal = await getMeal(params.meal);
 
   const instructions = meal.instructions
     .split("\n")

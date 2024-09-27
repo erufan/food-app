@@ -1,11 +1,13 @@
-import Link from "next/link";
-import classes from "./page.module.css";
-import MealsGrid from "@/components/meals/meals-grid";
 import { Suspense } from "react";
+import Link from "next/link";
+
+import { getAllMeals } from "@/services/meals";
+import MealsGrid from "@/components/meals/meals-grid";
+
+import classes from "./page.module.css";
 
 const Meals = async () => {
-  const data = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/meals`);
-  const meals = await data.json();
+  const meals = await getAllMeals();
 
   return <MealsGrid meals={meals} />;
 };
