@@ -2,13 +2,12 @@ import Image from "next/image";
 import { getMeal } from "@/services/meals";
 
 import classes from "./page.module.css";
+import { formatInstructions } from "@/utils/meals";
 
 const MealDetailsPage = async ({ params }) => {
   const meal = await getMeal(params.meal);
 
-  const instructions = meal.instructions
-    .split("\n")
-    .map((line, index) => <p key={index}>{line}</p>);
+  const instructions = formatInstructions(meal.instructions);
 
   return (
     <>
