@@ -1,11 +1,16 @@
 import Image from "next/image";
 import { getMeal } from "@/services/meals";
+import { notFound } from "next/navigation";
 
 import classes from "./page.module.css";
 import { formatInstructions } from "@/utils/meals";
 
 const MealDetailsPage = async ({ params }) => {
   const meal = await getMeal(params.meal);
+
+  if (meal.error?.match(/found/i)) {
+    notFound();
+  }
 
   const instructions = formatInstructions(meal.instructions);
 
