@@ -1,5 +1,6 @@
 "use server";
 
+import { redirect } from "next/dist/server/api-utils";
 import { postMeal } from "./http-requests";
 
 export const shareMeal = async (formData) => {
@@ -16,4 +17,6 @@ export const shareMeal = async (formData) => {
   data.slug = slugify(data.title, { lower: true });
 
   await postMeal(data);
+
+  redirect("/meals");
 };
