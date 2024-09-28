@@ -1,9 +1,9 @@
-import Image from "next/image";
-import { getMeal } from "@/services/meals";
 import { notFound } from "next/navigation";
+import { getMeal } from "@/services/meals/http-requests";
+import { formatInstructions } from "@/utils/meals";
+import Image from "next/image";
 
 import classes from "./page.module.css";
-import { formatInstructions } from "@/utils/meals";
 
 const MealDetailsPage = async ({ params }) => {
   const meal = await getMeal(params.meal);

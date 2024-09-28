@@ -17,3 +17,11 @@ export async function getMeal(slug) {
 
   return meal;
 }
+
+export async function postMeal(data) {
+  await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/meals`, {
+    body: JSON.stringify(data),
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+  });
+}

@@ -1,8 +1,7 @@
 import { Suspense } from "react";
-import Link from "next/link";
-
-import { getAllMeals } from "@/services/meals";
+import { getAllMeals } from "@/services/meals/http-requests";
 import MealsGrid from "@/components/meals/meals-grid";
+import Link from "next/link";
 
 import classes from "./page.module.css";
 
