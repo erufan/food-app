@@ -1,7 +1,33 @@
+import { put } from "@vercel/blob";
+import slugify from "slugify";
+
 import ImagePicker from "@/components/meals/image-picker";
 import classes from "./page.module.css";
 
 export default function ShareMealPage() {
+  const shareMeal = async (formData) => {
+    "use server";
+
+    const data = {};
+    for (const [key, value] of formData.entries()) {
+      data[key] = value;
+    }
+    const { image } = data;
+
+    const { url } = await put(image.name, image, {
+      access: "public",
+    });
+
+    data.image = url;
+    data.slug = slugify(data.title, { lower: true });
+
+    await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/meals`, {
+      body: JSON.stringify(data),
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+    });
+  };
+
   return (
     <>
       <header className={classes.header}>
@@ -11,7 +37,7 @@ export default function ShareMealPage() {
         <p>Or any other meal you feel needs sharing!</p>
       </header>
       <main className={classes.main}>
-        <form className={classes.form}>
+        <form className={classes.form} action={shareMeal}>
           <div className={classes.row}>
             <p>
               <label htmlFor="name">Your name</label>
@@ -39,7 +65,7 @@ export default function ShareMealPage() {
               required
             ></textarea>
           </p>
-          <ImagePicker />
+          <ImagePicker label="upload you image" name="image" />
           <p className={classes.actions}>
             <button type="submit">Share Meal</button>
           </p>
