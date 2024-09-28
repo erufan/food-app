@@ -12,6 +12,10 @@ const Meals = async () => {
 };
 
 const MealsPage = () => {
+  const randomNumber = Math.floor(Math.random() * 500);
+
+  console.log(randomNumber);
+
   return (
     <>
       <header className={classes.header}>

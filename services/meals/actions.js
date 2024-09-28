@@ -1,24 +1,23 @@
 "use server";
+import { redirect } from "next/navigation";
 import { put } from "@vercel/blob";
 import slugify from "slugify";
-
-import { redirect } from "next/dist/server/api-utils";
 import { postMeal } from "./http-requests";
 
 export const shareMeal = async (formData) => {
-  const data = {};
+  const meal = {};
   for (const [key, value] of formData.entries()) {
-    data[key] = value;
+    meal[key] = value;
   }
-  const { image } = data;
+  const { image } = meal;
   const { url } = await put(image.name, image, {
     access: "public",
   });
 
-  data.image = url;
-  data.slug = slugify(data.title, { lower: true });
+  meal.image = url;
+  meal.slug = slugify(meal.title, { lower: true });
 
-  await postMeal(data);
+  await postMeal(meal);
 
   redirect("/meals");
 };
