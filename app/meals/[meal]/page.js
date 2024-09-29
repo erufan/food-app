@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import { getMeal } from "@/services/meals/http-requests";
-import { formatInstructions } from "@/utils/meals";
 import Image from "next/image";
+import formatInstructions from "@/utils/meals/formatInstructions";
 
 import classes from "./page.module.css";
 
