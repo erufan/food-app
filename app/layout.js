@@ -1,5 +1,5 @@
 import MainHeader from "@/components/main-header/main-header";
-import openGraphImage from "../assets/community.png";
+import openGraphImage from "@/assets/icons/community.png";
 import "./globals.css";
 
 export const metadata = {
