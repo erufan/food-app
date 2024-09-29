@@ -1,7 +1,5 @@
 export async function getAllMeals() {
-  const data = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/meals`, {
-    cache: "no-cache",
-  });
+  const data = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/meals`);
 
   const meals = await data.json();
 

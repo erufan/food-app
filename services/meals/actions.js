@@ -3,6 +3,7 @@ import { redirect } from "next/navigation";
 import { put } from "@vercel/blob";
 import slugify from "slugify";
 import { postMeal } from "./http-requests";
+import { revalidatePath } from "next/cache";
 
 export const shareMeal = async (formData) => {
   const meal = {};
@@ -18,6 +19,6 @@ export const shareMeal = async (formData) => {
   meal.slug = slugify(meal.title, { lower: true });
 
   await postMeal(meal);
-
+  revalidatePath("/meals");
   redirect("/meals");
 };
