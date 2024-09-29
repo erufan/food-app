@@ -17,13 +17,6 @@ const Meals = async () => {
 };
 
 const MealsPage = () => {
-  let object = {
-    name: "erfan",
-    insideObject: { name: this.name },
-  };
-
-  console.log(object);
-
   return (
     <>
       <header className={classes.header}>
