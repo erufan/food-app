@@ -4,6 +4,17 @@ import Image from "next/image";
 import formatInstructions from "@/utils/meals/formatInstructions";
 
 import classes from "./page.module.css";
+import getMealMetaData from "@/utils/meals/getMealMetaData";
+
+export async function generateMetadata({ params }) {
+  const meal = await getMeal(params.meal);
+
+  if (meal.error?.match(/found/i)) {
+    notFound();
+  }
+
+  return getMealMetaData(meal, params.meal);
+}
 
 const MealDetailsPage = async ({ params }) => {
   const meal = await getMeal(params.meal);

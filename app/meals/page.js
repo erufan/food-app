@@ -5,6 +5,11 @@ import Link from "next/link";
 
 import classes from "./page.module.css";
 
+export const metadata = {
+  title: "All Meals",
+  description: "See All Meals and Try to Cook them by Your own",
+};
+
 const Meals = async () => {
   const meals = await getAllMeals();
 
@@ -12,9 +17,12 @@ const Meals = async () => {
 };
 
 const MealsPage = () => {
-  const randomNumber = Math.floor(Math.random() * 500);
+  let object = {
+    name: "erfan",
+    insideObject: { name: this.name },
+  };
 
-  console.log(randomNumber);
+  console.log(object);
 
   return (
     <>
